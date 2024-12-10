@@ -50,6 +50,4 @@ jobs:
         with:
           sarif_file: eslint-results.sarif
           wait-for-processing: true 
-        run: npx eslint . --format sarif --output-file eslint-results.sarif
-
       
