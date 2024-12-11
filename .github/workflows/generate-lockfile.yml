@@ -31,5 +31,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }}
       run: |
-        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
+        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
         git push origin main 
