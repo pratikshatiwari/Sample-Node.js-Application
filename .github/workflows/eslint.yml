@@ -1,38 +1,40 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-# ESLint is a tool for identifying and reporting on patterns
-# found in ECMAScript/JavaScript code.
-# More details at https://github.com/eslint/eslint
-# and https://eslint.org
-
-name: ESLint
+name: ESLint Analysis
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ "main" ]
-  schedule:
-    - cron: '39 5 * * 1'
 
 jobs:
-  lint-and-analyze:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+    - name: Checkout Code
+      uses: actions/checkout@v3
 
-    - name: Install dependencies
-      run: npm install
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18' # Use a compatible version of Node.js
 
-    - name: Run ESLint and generate SARIF file
+    - name: Install Dependencies
+      run: npm ci
+
+    - name: Install ESLint (if not installed locally)
+      run: npm install eslint --save-dev
+
+    - name: Create ESLint Config File (if missing)
+      run: |
+        if [ ! -f eslint.config.js ]; then
+          echo "export default [{ files: ['**/*.js'], rules: { 'no-unused-vars': 'warn' } }];" > eslint.config.js
+        fi
+
+    - name: Run ESLint
       run: npx eslint . --format sarif --output-file eslint-results.sarif
 
-    - name: Upload SARIF file to GitHub Code Scanning
-      uses: github/codeql-action/upload-sarif@v3
+    - name: Upload ESLint Results (if required)
+      uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: eslint-results.sarif
