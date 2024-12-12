@@ -43,8 +43,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           sonar-scanner \
-            -Dsonar.projectKey=my_project_key \
-            -Dsonar.organization=my_org \
+            -Dsonar.projectKey=pratikshatiwari_Sample-Node.js-Application \
+            -Dsonar.organization=pratikshatiwari \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.sources=.
           
