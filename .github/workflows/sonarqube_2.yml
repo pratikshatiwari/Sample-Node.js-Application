@@ -35,3 +35,15 @@ jobs:
             -Dsonar.projectKey=my_project_key \
             -Dsonar.organization=my_organization \
             -Dsonar.sources=src
+
+
+      - name: Run SonarScanner 2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Secure token stored in GitHub Secrets
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=pratikshatiwari_Sample-Node.js-Application \
+            -Dsonar.organization=pratikshatiwari \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.sources=. \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
