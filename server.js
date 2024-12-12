@@ -45,4 +45,4 @@ app.use(flash()); //used to display flash messages from sessions
 require('./routes')(app, passport); // include routes
 app.listen(process.env.PORT || 3000);
 
-console.log('Listening on port 3000');
+console.log('Listening on port 3000'); 
