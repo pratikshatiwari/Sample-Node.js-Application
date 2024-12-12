@@ -36,6 +36,13 @@ jobs:
           --output-file eslint-results.sarif
         continue-on-error: true
 
+      - name: Debug ESLint
+        run: npx eslint . --format sarif --output-file eslint-results.sarif || echo "ESLint failed"
+
+      - name: Verify SARIF File
+        run: ls -l eslint-results.sarif
+
+
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v3
         with:
