@@ -21,6 +21,9 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Audit 
+        run: npm audit fix --force
+        
       - name: Run ESLint
         run: npx eslint . --format sarif --output-file eslint-results.sarif
 
