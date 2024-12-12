@@ -36,6 +36,9 @@ jobs:
           --output-file eslint-results.sarif
         continue-on-error: true
 
+      - name: Run ESLint in Debug Mode
+        run: npx eslint . --debug || echo "ESLint failed"
+
       - name: Debug ESLint
         run: npx eslint . --format sarif --output-file eslint-results.sarif || echo "ESLint failed"
 
