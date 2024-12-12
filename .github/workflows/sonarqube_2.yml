@@ -41,6 +41,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      - name: Install SonarScanner
+        run: |
+          curl -sL https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-6.0.0.4432-linux.zip -o sonar-scanner.zip
+          unzip sonar-scanner.zip
+          mv sonar-scanner-6.0.0.4432-linux sonar-scanner
+          echo "SONAR_SCANNER_HOME=$(pwd)/sonar-scanner" >> $GITHUB_ENV
+          echo "PATH=$(pwd)/sonar-scanner/bin:$PATH" >> $GITHUB_ENV
+          
       - name: Analyze with SonarQube
 
         # You can pin the exact commit or the version.
