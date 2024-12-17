@@ -37,7 +37,7 @@ jobs:
           unzip sonar-scanner.zip
           mv sonar-scanner-6.0.0.4432-linux sonar-scanner
           echo "SONAR_SCANNER_HOME=$(pwd)/sonar-scanner" >> $GITHUB_ENV
-          echo "PATH=$(pwd)/sonar-scanner/bin:$PATH" >> $GITHUB_ENV
+          echo "PATH=$(pwd)/sonar-scanner/bin:$PATH" >bgv vITHUB_ENV
       - name: Run SonarScanner
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
