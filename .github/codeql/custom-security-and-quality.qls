@@ -1,3 +1,4 @@
 queries:
   - uses: security-and-quality
   - uses: ./codeql/deps.ql
+  - uses: ./codeql/empty-catch.ql
