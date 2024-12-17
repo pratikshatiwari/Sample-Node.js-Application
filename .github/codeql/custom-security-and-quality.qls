@@ -2,3 +2,6 @@ queries:
   - uses: security-and-quality
   - uses: ./codeql/deps.ql
   - uses: ./codeql/empty-catch.ql
+  - uses: ./codeql/complex-methods.ql
+  - uses: ./codeql/hardcoded-values.ql
+  - uses: ./codeql/unclosed-resources.ql
